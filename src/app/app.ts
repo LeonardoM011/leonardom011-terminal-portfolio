@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Terminal } from './terminal/terminal';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [Terminal],
+  template: '<app-terminal />',
+  styles: [':host { display: block; width: 100%; height: 100dvh; }'],
 })
-export class App {
-  protected readonly title = signal('leonardom011-terminal-portfolio');
-}
+export class App {}
