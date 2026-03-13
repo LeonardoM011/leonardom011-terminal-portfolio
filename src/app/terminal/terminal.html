@@ -6,6 +6,9 @@
       <span class="dot green"></span>
     </div>
     <span class="title-text">visitor&#64;leonardom011 — portfolio</span>
+    <button class="lang-btn" (click)="runClick(lang() === 'en' ? 'lang hr' : 'lang en')" title="Switch language">
+      {{ lang() === 'en' ? '🇺🇸 EN' : '🇭🇷 HR' }}
+    </button>
   </div>
 
   <div class="output" #scrollEl>

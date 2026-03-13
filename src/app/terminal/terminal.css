@@ -59,6 +59,24 @@
   text-align: center;
 }
 
+.lang-btn {
+  background: transparent;
+  border: 1px solid #504945;
+  border-radius: 4px;
+  color: #928374;
+  font-family: inherit;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.lang-btn:hover {
+  border-color: #b8bb26;
+  color: #b8bb26;
+}
+
 /* ─── Output area ─── */
 .output {
   flex: 1;

@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { runCommand } from './commands';
+import { runCommand, langInfoCmd, langSetCmd, langErrorCmd } from './commands';
+import { Lang, TRANSLATIONS } from './i18n';
 
 export interface TerminalLine {
   type: 'banner' | 'input' | 'output' | 'error' | 'blank';
@@ -26,6 +27,7 @@ export class Terminal implements OnInit {
   currentInput = signal('');
   history = signal<string[]>([]);
   historyIndex = signal(-1);
+  lang = signal<Lang>('en');
 
   readonly PROMPT = 'visitor@leonardom011:~$';
 
@@ -33,7 +35,7 @@ export class Terminal implements OnInit {
     this.lines.set([
       ...BANNER_LINES,
       { type: 'blank', content: '' },
-      ...runCommand('help'),
+      ...runCommand('help', this.lang()),
       { type: 'blank', content: '' },
     ]);
   }
@@ -79,7 +81,7 @@ export class Terminal implements OnInit {
         return;
       }
 
-      const result = runCommand(cmd);
+      const result = this.handleLang(cmd) ?? runCommand(cmd, this.lang());
       for (const line of result) {
         this.appendLine(line);
       }
@@ -90,6 +92,24 @@ export class Terminal implements OnInit {
 
     this.currentInput.set('');
     this.scrollToBottom();
+  }
+
+  private handleLang(cmd: string): TerminalLine[] | null {
+    const parts = cmd.trim().split(/\s+/);
+    if (parts[0].toLowerCase() !== 'lang') return null;
+
+    const arg = parts[1]?.toLowerCase() as Lang | undefined;
+
+    if (!arg) {
+      return langInfoCmd(this.lang());
+    }
+    if (arg !== 'en' && arg !== 'hr') {
+      return langErrorCmd(TRANSLATIONS[this.lang()]);
+    }
+
+    const result = langSetCmd(arg, TRANSLATIONS[this.lang()]);
+    this.lang.set(arg);
+    return result;
   }
 
   private navigateHistory(dir: number) {
@@ -121,40 +141,12 @@ export class Terminal implements OnInit {
 }
 
 const BANNER_LINES: TerminalLine[] = [
-  {
-    type: 'banner',
-    content: `<span class="green"> _                                     _   _ </span>`,
-    isHtml: true,
-  },
-  {
-    type: 'banner',
-    content: `<span class="green">| | ___  ___  _ __   __ _ _ __ __| | ___  </span>`,
-    isHtml: true,
-  },
-  {
-    type: 'banner',
-    content: `<span class="green">| |/ _ \\/ _ \\| '_ \\ / _\` | '__/ _\` |/ _ \\ </span>`,
-    isHtml: true,
-  },
-  {
-    type: 'banner',
-    content: `<span class="green">| |  __/ (_) | | | | (_| | | | (_| | (_) |</span>`,
-    isHtml: true,
-  },
-  {
-    type: 'banner',
-    content: `<span class="green">|_|\\___|\\___/|_| |_|\\__,_|_|  \\__,_|\\___/ </span>`,
-    isHtml: true,
-  },
+  { type: 'banner', content: `<span class="green"> _                                     _   _ </span>`, isHtml: true },
+  { type: 'banner', content: `<span class="green">| | ___  ___  _ __   __ _ _ __ __| | ___  </span>`, isHtml: true },
+  { type: 'banner', content: `<span class="green">| |/ _ \\/ _ \\| '_ \\ / _\` | '__/ _\` |/ _ \\ </span>`, isHtml: true },
+  { type: 'banner', content: `<span class="green">| |  __/ (_) | | | | (_| | | | (_| | (_) |</span>`, isHtml: true },
+  { type: 'banner', content: `<span class="green">|_|\\___|\\___/|_| |_|\\__,_|_|  \\__,_|\\___/ </span>`, isHtml: true },
   { type: 'blank', content: '' },
-  {
-    type: 'output',
-    content: '<span class="dim">Portfolio v1.0.0 — Full-Stack Developer</span>',
-    isHtml: true,
-  },
-  {
-    type: 'output',
-    content: '<span class="dim">────────────────────────────────────────────</span>',
-    isHtml: true,
-  },
+  { type: 'output', content: '<span class="dim">Portfolio v1.0.0 — Full-Stack Developer</span>', isHtml: true },
+  { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
 ];
