@@ -169,6 +169,15 @@
 :host ::ng-deep .link           { color: #8ec07c; text-decoration: underline; }
 :host ::ng-deep .link:hover     { color: #b8bb26; }
 
+/* ─── Profile picture ─── */
+:host ::ng-deep .profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 0;
+  object-fit: cover;
+  border: 2px solid #b8bb26;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 600px) {
   :host {

@@ -150,4 +150,5 @@ const BANNER_LINES: TerminalLine[] = [
   { type: 'blank', content: '' },
   { type: 'output', content: '<span class="dim">Portfolio v1.0.0 — Full-Stack Developer</span>', isHtml: true },
   { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
+  { type: 'output', content: '<img class="profile-pic" src="profile-pic.jpg" alt="Profile" />', isHtml: true },
 ];
