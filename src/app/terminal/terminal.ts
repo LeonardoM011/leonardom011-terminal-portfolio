@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { runCommand, langInfoCmd, langSetCmd, langErrorCmd } from './commands';
@@ -27,9 +27,10 @@ export class Terminal implements OnInit {
   currentInput = signal('');
   history = signal<string[]>([]);
   historyIndex = signal(-1);
-  lang = signal<Lang>('en');
+  lang = signal<Lang>('hr');
 
-  readonly PROMPT = 'visitor@leonardom011:~$';
+  readonly PROMPT_USER: Record<Lang, string> = { en: 'user', hr: 'korisnik' };
+  prompt = computed(() => `${this.PROMPT_USER[this.lang()]}@leonardom011:~$`);
 
   ngOnInit() {
     this.lines.set([
@@ -54,7 +55,7 @@ export class Terminal implements OnInit {
       this.clear();
     } else if (event.key === 'c' && event.ctrlKey) {
       event.preventDefault();
-      this.appendLine({ type: 'input', content: this.currentInput(), prompt: this.PROMPT });
+      this.appendLine({ type: 'input', content: this.currentInput(), prompt: this.prompt() });
       this.appendLine({ type: 'output', content: '^C' });
       this.appendLine({ type: 'blank', content: '' });
       this.currentInput.set('');
@@ -69,7 +70,7 @@ export class Terminal implements OnInit {
 
   private submit() {
     const cmd = this.currentInput().trim();
-    this.appendLine({ type: 'input', content: cmd, prompt: this.PROMPT });
+    this.appendLine({ type: 'input', content: cmd, prompt: this.prompt() });
 
     if (cmd) {
       this.history.update(h => [cmd, ...h].slice(0, 50));
@@ -141,7 +142,7 @@ export class Terminal implements OnInit {
 }
 
 const BANNER_LINES: TerminalLine[] = [
-  { type: 'banner', content: `<span class="green"> _                                     _   _ </span>`, isHtml: true },
+  { type: 'banner', content: `<span class="green"> _                                _ </span>`, isHtml: true },
   { type: 'banner', content: `<span class="green">| | ___  ___  _ __   __ _ _ __ __| | ___  </span>`, isHtml: true },
   { type: 'banner', content: `<span class="green">| |/ _ \\/ _ \\| '_ \\ / _\` | '__/ _\` |/ _ \\ </span>`, isHtml: true },
   { type: 'banner', content: `<span class="green">| |  __/ (_) | | | | (_| | | | (_| | (_) |</span>`, isHtml: true },

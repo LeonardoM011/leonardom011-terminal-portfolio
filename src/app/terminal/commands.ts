@@ -54,7 +54,11 @@ function helpCmd(lang: Lang): CommandResult {
   const cmds = getCommandDescriptions(lang);
   const lines: TerminalLine[] = [
     { type: 'output', content: `<span class="section-title">${t.helpTitle}</span>`, isHtml: true },
-    { type: 'output', content: '<span class="dim">─────────────────────────────────────</span>', isHtml: true },
+    {
+      type: 'output',
+      content: '<span class="dim">────────────────────────────────────────────</span>',
+      isHtml: true,
+    },
   ];
   for (const [name, desc] of Object.entries(cmds)) {
     lines.push({
@@ -77,7 +81,7 @@ function whoamiCmd(t: Translations): CommandResult {
 function aboutCmd(t: Translations): CommandResult {
   return [
     { type: 'output', content: `<span class="section-title">${t.aboutTitle}</span>`, isHtml: true },
-    { type: 'output', content: '<span class="dim">─────────────────────────────────────</span>', isHtml: true },
+    { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
     { type: 'output', content: `  ${t.aboutLine1}`, isHtml: true },
     { type: 'output', content: `  ${t.aboutLine2}` },
     { type: 'blank', content: '' },
@@ -93,7 +97,7 @@ function aboutCmd(t: Translations): CommandResult {
 function skillsCmd(t: Translations): CommandResult {
   return [
     { type: 'output', content: `<span class="section-title">${t.skillsTitle}</span>`, isHtml: true },
-    { type: 'output', content: '<span class="dim">─────────────────────────────────────</span>', isHtml: true },
+    { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
     { type: 'output', content: `  <span class="yellow">${t.skillsFrontend}</span>`, isHtml: true },
     { type: 'output', content: '  ├─ Angular, React, Vue' },
     { type: 'output', content: '  ├─ TypeScript / JavaScript (ES2022+)' },
@@ -120,7 +124,7 @@ function projectsCmd(t: Translations): CommandResult {
 
   const lines: TerminalLine[] = [
     { type: 'output', content: `<span class="section-title">${t.projectsTitle}</span>`, isHtml: true },
-    { type: 'output', content: '<span class="dim">─────────────────────────────────────</span>', isHtml: true },
+    { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
   ];
 
   for (const p of projects) {
@@ -136,7 +140,7 @@ function projectsCmd(t: Translations): CommandResult {
 function contactCmd(t: Translations): CommandResult {
   return [
     { type: 'output', content: `<span class="section-title">${t.contactTitle}</span>`, isHtml: true },
-    { type: 'output', content: '<span class="dim">─────────────────────────────────────</span>', isHtml: true },
+    { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
     { type: 'blank', content: '' },
     { type: 'output', content: `  <span class="dim">Email</span>     <a href="mailto:leo@example.com" class="link">leo@example.com</a>`, isHtml: true },
     { type: 'output', content: `  <span class="dim">GitHub</span>    <a href="https://github.com/leonardom011" target="_blank" class="link">github.com/leonardom011</a>`, isHtml: true },
@@ -156,7 +160,7 @@ function lsCmd(): CommandResult {
 
 function neofetchCmd(t: Translations): CommandResult {
   return [
-    { type: 'output', content: `<span class="green">         .          </span>  <span class="green">visitor</span><span class="dim">@</span><span class="green">leonardom011</span>`, isHtml: true },
+    { type: 'output', content: `<span class="green">         .          </span>  <span class="green">${t.neofetchUser}</span><span class="dim">@</span><span class="green">leonardom011</span>`, isHtml: true },
     { type: 'output', content: `<span class="green">        /|\\         </span>  <span class="dim">──────────────────</span>`, isHtml: true },
     { type: 'output', content: `<span class="green">       / | \\        </span>  <span class="dim">OS:</span>     ${t.neofetchOs}`, isHtml: true },
     { type: 'output', content: `<span class="green">      /  |  \\       </span>  <span class="dim">Host:</span>   leonardom011.dev`, isHtml: true },

@@ -57,6 +57,7 @@ export interface Translations {
   langAvailable: string;
 
   // neofetch
+  neofetchUser: string;
   neofetchOs: string;
   neofetchShell: string;
   neofetchStack: string;
@@ -117,6 +118,7 @@ const en: Translations = {
   langUnknown: 'Unknown language. Available:',
   langAvailable: 'en (English), hr (Croatian)',
 
+  neofetchUser: 'user',
   neofetchOs: 'Portfolio Linux',
   neofetchShell: 'portfolio-sh 1.0.0',
   neofetchStack: 'Angular 21 + TS',
@@ -176,6 +178,7 @@ const hr: Translations = {
   langUnknown: 'Nepoznati jezik. Dostupno:',
   langAvailable: 'en (Engleski), hr (Hrvatski)',
 
+  neofetchUser: 'korisnik',
   neofetchOs: 'Portfolio Linux',
   neofetchShell: 'portfolio-sh 1.0.0',
   neofetchStack: 'Angular 21 + TS',

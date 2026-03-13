@@ -5,7 +5,7 @@
       <span class="dot yellow"></span>
       <span class="dot green"></span>
     </div>
-    <span class="title-text">visitor&#64;leonardom011 — portfolio</span>
+    <span class="title-text">leonardom011 portfolio</span>
     <button class="lang-btn" (click)="runClick(lang() === 'en' ? 'lang hr' : 'lang en')" title="Switch language">
       {{ lang() === 'en' ? '🇺🇸 EN' : '🇭🇷 HR' }}
     </button>
@@ -32,7 +32,7 @@
     }
 
     <div class="line input-row">
-      <span class="prompt">{{ PROMPT }}</span>
+      <span class="prompt">{{ prompt() }}</span>
       <span class="input-area">
         <input
           #inputEl
