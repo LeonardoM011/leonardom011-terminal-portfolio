@@ -1,0 +1,50 @@
+<div class="terminal-wrapper" (click)="focusInput()">
+  <div class="title-bar">
+    <div class="dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="title-text">visitor&#64;leonardom011 — portfolio</span>
+  </div>
+
+  <div class="output" #scrollEl>
+    @for (line of lines(); track $index) {
+      @if (line.type === 'input') {
+        <div class="line input-line">
+          <span class="prompt">{{ line.prompt }}</span>
+          <span class="input-text">{{ line.content }}</span>
+        </div>
+      } @else if (line.type === 'blank') {
+        <div class="line blank-line">&nbsp;</div>
+      } @else if (line.type === 'error') {
+        <div class="line error-line" [innerHTML]="line.content"></div>
+      } @else if (line.clickCommand) {
+        <div class="line clickable-line" (click)="runClick(line.clickCommand)" [innerHTML]="line.content"></div>
+      } @else if (line.isHtml) {
+        <div class="line" [innerHTML]="line.content"></div>
+      } @else {
+        <div class="line">{{ line.content }}</div>
+      }
+    }
+
+    <div class="line input-row">
+      <span class="prompt">{{ PROMPT }}</span>
+      <span class="input-area">
+        <input
+          #inputEl
+          class="cmd-input"
+          type="text"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          [ngModel]="currentInput()"
+          (ngModelChange)="currentInput.set($event)"
+          (keydown)="onKey($event)"
+          autofocus
+        />
+      </span>
+    </div>
+  </div>
+</div>
