@@ -88,38 +88,66 @@ function aboutCmd(t: Translations): CommandResult {
     { type: 'output', content: `  ${t.aboutLine3}` },
     { type: 'output', content: `  ${t.aboutLine4}` },
     { type: 'output', content: `  ${t.aboutLine5}` },
-    { type: 'blank', content: '' },
-    { type: 'output', content: `  <span class="dim">${t.aboutLabelLocation}</span>  🌍 Brazil`, isHtml: true },
-    { type: 'output', content: `  <span class="dim">${t.aboutLabelStatus}</span>    ${t.aboutStatusValue}`, isHtml: true },
   ];
 }
 
 function skillsCmd(t: Translations): CommandResult {
   return [
-    { type: 'output', content: `<span class="section-title">${t.skillsTitle}</span>`, isHtml: true },
-    { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
+    {
+      type: 'output',
+      content: `<span class="section-title">${t.skillsTitle}</span>`,
+      isHtml: true,
+    },
+    {
+      type: 'output',
+      content: '<span class="dim">────────────────────────────────────────────</span>',
+      isHtml: true,
+    },
     { type: 'output', content: `  <span class="yellow">${t.skillsFrontend}</span>`, isHtml: true },
-    { type: 'output', content: '  ├─ Angular, React, Vue' },
-    { type: 'output', content: '  ├─ TypeScript / JavaScript (ES2022+)' },
-    { type: 'output', content: '  └─ Tailwind CSS, SCSS' },
+    { type: 'output', content: '  ├─ TypeScript / JavaScript' },
+    { type: 'output', content: '  ├─ Angular, React' },
+    { type: 'output', content: '  └─ Tailwind CSS, Bootstrap, Material UI' },
     { type: 'blank', content: '' },
     { type: 'output', content: `  <span class="yellow">${t.skillsBackend}</span>`, isHtml: true },
-    { type: 'output', content: '  ├─ Node.js, Express, Fastify' },
-    { type: 'output', content: '  ├─ PostgreSQL, MongoDB, Redis' },
-    { type: 'output', content: '  └─ REST APIs, GraphQL' },
+    { type: 'output', content: '  ├─ Java, Kotlin, C++' },
+    { type: 'output', content: '  ├─ Spring Boot, Node.js, Express, Flask' },
+    { type: 'output', content: '  ├─ PostgreSQL, MySQL, Redis, IMB DB2' },
+    { type: 'output', content: '  └─ REST APIs, HATEOAS' },
     { type: 'blank', content: '' },
     { type: 'output', content: `  <span class="yellow">${t.skillsDevops}</span>`, isHtml: true },
     { type: 'output', content: '  ├─ Docker, Linux' },
-    { type: 'output', content: '  ├─ Git, GitHub Actions' },
-    { type: 'output', content: '  └─ Nginx, VPS deployment' },
+    { type: 'output', content: '  ├─ Bash, Powershell, Python' },
+    { type: 'output', content: '  ├─ Git, GitHub Actions, AWS' },
+    { type: 'output', content: '  └─ Nginx, Openshift, Cloudflare' },
   ];
 }
 
 function projectsCmd(t: Translations): CommandResult {
   const projects = [
-    { name: t.projectTitle1, tech: 'Angular 21, TypeScript', desc: t.projectDesc1, url: 'github.com/leonardom011/terminal-portfolio' },
-    { name: t.projectTitle2, tech: 'Node.js, PostgreSQL',    desc: t.projectDesc2, url: 'github.com/leonardom011/project-alpha' },
-    { name: t.projectTitle3, tech: 'React, Redis, WebSockets', desc: t.projectDesc3, url: 'github.com/leonardom011/project-beta' },
+    {
+      name: t.projectTitle1,
+      tech: 'PixiJS, TypeScript, Spring Boot, PostgreSQL',
+      desc: t.projectDesc1,
+      url: 'https://github.com/LeonardoM011/dungeon-mc2-natjecanje',
+      shortUrl: 'github.com/LeonardoM011/dungeon-mc2-natjecanje',
+      imageUrl: 'dungeon-crawler.png',
+    },
+    {
+      name: t.projectTitle2,
+      tech: 'Typescript, Spring Boot, ReactJS, PostgreSQL',
+      desc: t.projectDesc2,
+      url: 'https://github.com/janm2001/SpotASpot',
+      shortUrl: 'github.com/janm2001/SpotASpot',
+      imageUrl: 'spotaspot.png',
+    },
+    {
+      name: t.projectTitle3,
+      tech: 'C++, OpenGL',
+      desc: t.projectDesc3,
+      url: 'https://github.com/LeonardoM011/kobege',
+      shortUrl: 'github.com/LeonardoM011/kobege',
+      imageUrl: 'teapot-kobege.png',
+    },
   ];
 
   const lines: TerminalLine[] = [
@@ -131,7 +159,8 @@ function projectsCmd(t: Translations): CommandResult {
     lines.push({ type: 'blank', content: '' });
     lines.push({ type: 'output', content: `  <span class="green">▸ ${escHtml(p.name)}</span>  <span class="dim">[${escHtml(p.tech)}]</span>`, isHtml: true });
     lines.push({ type: 'output', content: `    ${p.desc}` });
-    lines.push({ type: 'output', content: `    <span class="dim">→ ${escHtml(p.url)}</span>`, isHtml: true });
+    lines.push({ type: 'output', content: `    <img class="project-pic" src="${escHtml(p.imageUrl)}" alt="${escHtml(p.name)}" />`, isHtml: true });
+    lines.push({ type: 'output', content: `    <span class="dim">→ <a href="${escHtml(p.url)}" target="_blank" class="link">${escHtml(p.shortUrl)}</a></span>`, isHtml: true });
   }
 
   return lines;
@@ -142,9 +171,9 @@ function contactCmd(t: Translations): CommandResult {
     { type: 'output', content: `<span class="section-title">${t.contactTitle}</span>`, isHtml: true },
     { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
     { type: 'blank', content: '' },
-    { type: 'output', content: `  <span class="dim">Email</span>     <a href="mailto:leo@example.com" class="link">leo@example.com</a>`, isHtml: true },
+    { type: 'output', content: `  <span class="dim">Email</span>     <a href="mailto:leonardo.leo.201@gmail.com" class="link">leonardo.leo.201@gmail.com</a>`, isHtml: true },
     { type: 'output', content: `  <span class="dim">GitHub</span>    <a href="https://github.com/leonardom011" target="_blank" class="link">github.com/leonardom011</a>`, isHtml: true },
-    { type: 'output', content: `  <span class="dim">LinkedIn</span>  <a href="https://linkedin.com/in/leonardom011" target="_blank" class="link">linkedin.com/in/leonardom011</a>`, isHtml: true },
+    { type: 'output', content: `  <span class="dim">LinkedIn</span>  <a href="https://www.linkedin.com/in/leonardo-marinovic/" target="_blank" class="link">linkedin.com/in/leonardo-marinovic</a>`, isHtml: true },
     { type: 'blank', content: '' },
     { type: 'output', content: `  <span class="dim">${t.contactCta}</span>`, isHtml: true },
   ];

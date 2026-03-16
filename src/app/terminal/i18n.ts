@@ -30,9 +30,6 @@ export interface Translations {
   aboutLine3: string;
   aboutLine4: string;
   aboutLine5: string;
-  aboutLabelLocation: string;
-  aboutLabelStatus: string;
-  aboutStatusValue: string;
 
   // skills categories
   skillsFrontend: string;
@@ -89,27 +86,24 @@ const en: Translations = {
   contactTitle: 'Contact',
 
   whoamiRole: 'Full-Stack Developer',
-  whoamiDesc: 'Building web apps with Angular, Node.js, and everything in between.',
+  whoamiDesc: 'Building web apps with Spring Boot and Angular.',
 
-  aboutLine1: "Hi! I'm <span class=\"green\">Leonardo</span>, a full-stack developer passionate about",
-  aboutLine2: 'building clean, performant, and beautiful web experiences.',
-  aboutLine3: 'I love open source, terminal aesthetics, and well-crafted UIs.',
-  aboutLine4: "When I'm not coding I'm probably reading, hiking, or tinkering",
-  aboutLine5: 'with some side project at 2 AM.',
-  aboutLabelLocation: 'Location:',
-  aboutLabelStatus: 'Status:',
-  aboutStatusValue: 'Open to new opportunities',
+  aboutLine1: 'Hi! I\'m <span class="green">Leonardo</span>, a full-stack developer',
+  aboutLine2: 'primarily working with Spring Boot and Spring.',
+  aboutLine3: 'I love open source, sys admin and backend development.',
+  aboutLine4: 'In my free time, I play electric guitar and drums.',
+  aboutLine5: '',
 
   skillsFrontend: 'Frontend',
   skillsBackend: 'Backend',
   skillsDevops: 'DevOps & Tools',
 
-  projectTitle1: 'Terminal Portfolio',
-  projectDesc1: 'This interactive terminal-style portfolio site.',
-  projectTitle2: 'Project Alpha',
-  projectDesc2: 'A RESTful API with authentication and role management.',
-  projectTitle3: 'Project Beta',
-  projectDesc3: 'Real-time collaboration tool with live cursors.',
+  projectTitle1: 'Dungeon Programmer',
+  projectDesc1: 'A game made for the TVZ MC2 competition built with Pixi.JS.',
+  projectTitle2: 'Spot A Spot',
+  projectDesc2: 'Online platform for creating and managing events made for MC2 competition.',
+  projectTitle3: 'KobeGE',
+  projectDesc3: 'Game Engine written in C++ using OpenGL.',
 
   contactCta: "I'm always open to interesting conversations. Say hi!",
 
@@ -148,30 +142,27 @@ const hr: Translations = {
   projectsTitle: 'Projekti',
   contactTitle: 'Kontakt',
 
-  whoamiRole: 'Full-Stack Programer',
-  whoamiDesc: 'Izrađujem web aplikacije s Angularom, Node.js-om i svime između.',
+  whoamiRole: 'Full-Stack Developer',
+  whoamiDesc: 'Izrađujem web aplikacije primarno sa Java Spring Boot i Angular.',
 
-  aboutLine1: "Bok! Ja sam <span class=\"green\">Leonardo</span>, full-stack programer strastveno zainteresiran za",
-  aboutLine2: 'izgradnju čistih, performantnih i lijepih web iskustava.',
-  aboutLine3: 'Volim open source, terminalsku estetiku i dobro oblikovana sučelja.',
-  aboutLine4: 'Kad ne kodiram, vjerojatno čitam, planinaram ili petljam',
-  aboutLine5: 's nekim sporednim projektom u 2 ujutro.',
-  aboutLabelLocation: 'Lokacija:',
-  aboutLabelStatus: 'Status:',
-  aboutStatusValue: 'Otvoren za nove prilike',
+  aboutLine1: "Bok! Ja sam <span class=\"green\">Leonardo</span>, Full-Stack Developer.",
+  aboutLine2: 'Primarno se bavim izradom backend aplikacija u Spring-u i Spring Bootu.',
+  aboutLine3: 'Volim open source, sys admin i backend development.',
+  aboutLine4: 'U slobodno vrijeme sviram električnu gitaru i bubnjeve.',
+  aboutLine5: '',
 
   skillsFrontend: 'Frontend',
   skillsBackend: 'Backend',
   skillsDevops: 'DevOps i alati',
 
-  projectTitle1: 'Terminal Portfolio',
-  projectDesc1: 'Ovaj interaktivni portfolio u stilu terminala.',
-  projectTitle2: 'Projekt Alpha',
-  projectDesc2: 'RESTful API s autentikacijom i upravljanjem ulogama.',
-  projectTitle3: 'Projekt Beta',
-  projectDesc3: 'Alat za suradnju u stvarnom vremenu s live kursorima.',
+  projectTitle1: 'Dungeon programmer',
+  projectDesc1: 'Igra napravljena za TVZ MC2 natjecanje izrađena u Pixi.JS.',
+  projectTitle2: 'Spot A Spot',
+  projectDesc2: 'Online platforma za dijeljenje i kreiranje evenata za TVZ MC2 natjecanje.',
+  projectTitle3: 'KobeGE',
+  projectDesc3: 'Game Engine napisan u C++ koji koristi OpenGL.',
 
-  contactCta: 'Uvijek sam otvoren za zanimljive razgovore. Javi se!',
+  contactCta: 'Otvoren sam za razgovor. Javi se!',
 
   langCurrentLabel: 'Trenutni jezik:',
   langSetMsg: 'Jezik postavljen na',
