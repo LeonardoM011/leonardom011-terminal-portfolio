@@ -10,6 +10,8 @@ export function getCommandDescriptions(lang: Lang): Record<string, string> {
     about: t.cmdAbout,
     skills: t.cmdSkills,
     projects: t.cmdProjects,
+    experience: t.cmdExperience,
+    activities: t.cmdActivities,
     contact: t.cmdContact,
     whoami: t.cmdWhoami,
     ls: t.cmdLs,
@@ -29,6 +31,8 @@ export function runCommand(input: string, lang: Lang): CommandResult {
     case 'about':    return aboutCmd(t);
     case 'skills':   return skillsCmd(t);
     case 'projects': return projectsCmd(t);
+    case 'experience': return experienceCmd(t);
+    case 'activities': return activitiesCmd(t);
     case 'contact':  return contactCmd(t);
     case 'whoami':   return whoamiCmd(t);
     case 'ls':       return lsCmd();
@@ -109,16 +113,21 @@ function skillsCmd(t: Translations): CommandResult {
     { type: 'output', content: '  └─ Tailwind CSS, Bootstrap, Material UI' },
     { type: 'blank', content: '' },
     { type: 'output', content: `  <span class="yellow">${t.skillsBackend}</span>`, isHtml: true },
-    { type: 'output', content: '  ├─ Java, Kotlin, C++' },
+    { type: 'output', content: '  ├─ Java, Kotlin, Groovy, C++' },
     { type: 'output', content: '  ├─ Spring Boot, Node.js, Express, Flask' },
-    { type: 'output', content: '  ├─ PostgreSQL, MySQL, Redis, IMB DB2' },
+    { type: 'output', content: '  ├─ PostgreSQL, MySQL, Oracle DB, IBM DB2, Redis' },
     { type: 'output', content: '  └─ REST APIs, HATEOAS' },
     { type: 'blank', content: '' },
     { type: 'output', content: `  <span class="yellow">${t.skillsDevops}</span>`, isHtml: true },
-    { type: 'output', content: '  ├─ Docker, Linux' },
-    { type: 'output', content: '  ├─ Bash, Powershell, Python' },
+    { type: 'output', content: '  ├─ Docker, Linux (Bash), Powershell, Python' },
     { type: 'output', content: '  ├─ Git, GitHub Actions, AWS' },
-    { type: 'output', content: '  └─ Nginx, Openshift, Cloudflare' },
+    { type: 'output', content: '  └─ Nginx, Openshift, Cloudflare, Tailscale' },
+    { type: 'blank', content: '' },
+    { type: 'output', content: `  <span class="yellow">${t.skillsHomelab}</span>`, isHtml: true },
+    { type: 'output', content: `<span class="hang-bullet">  ├─ ${t.homelabBullet1}</span>`, isHtml: true },
+    { type: 'output', content: `<span class="hang-bullet">  ├─ ${t.homelabBullet2}</span>`, isHtml: true },
+    { type: 'output', content: `<span class="hang-bullet">  ├─ ${t.homelabBullet3}</span>`, isHtml: true },
+    { type: 'output', content: `<span class="hang-bullet">  └─ ${t.homelabBullet4}</span>`, isHtml: true },
   ];
 }
 
@@ -166,6 +175,43 @@ function projectsCmd(t: Translations): CommandResult {
   return lines;
 }
 
+function experienceCmd(t: Translations): CommandResult {
+  const lines: TerminalLine[] = [
+    { type: 'output', content: `<span class="section-title">${t.experienceTitle}</span>`, isHtml: true },
+    { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
+  ];
+
+  for (const job of t.experience) {
+    lines.push({ type: 'blank', content: '' });
+    lines.push({ type: 'output', content: `  <span class="green">▸ ${escHtml(job.company)}</span>`, isHtml: true });
+    lines.push({ type: 'output', content: `    <span class="yellow">${escHtml(job.role)}</span>`, isHtml: true });
+    lines.push({ type: 'output', content: `    <span class="dim">${escHtml(job.location)} · ${escHtml(job.dates)}</span>`, isHtml: true });
+    if (job.clients?.length) {
+      lines.push({ type: 'output', content: `    <span class="yellow">${escHtml(t.experienceClientsLabel)}:</span>`, isHtml: true });
+      for (const client of job.clients) {
+        lines.push({ type: 'output', content: `      <span class="dim">•</span> <span class="cmd-highlight">${escHtml(client)}</span>`, isHtml: true });
+      }
+    }
+  }
+
+  return lines;
+}
+
+function activitiesCmd(t: Translations): CommandResult {
+  const lines: TerminalLine[] = [
+    { type: 'output', content: `<span class="section-title">${t.activitiesTitle}</span>`, isHtml: true },
+    { type: 'output', content: '<span class="dim">────────────────────────────────────────────</span>', isHtml: true },
+  ];
+
+  for (const activity of t.activities) {
+    lines.push({ type: 'blank', content: '' });
+    lines.push({ type: 'output', content: `  <span class="green">▸ ${escHtml(activity.name)}</span>`, isHtml: true });
+    lines.push({ type: 'output', content: `    <span class="dim">${escHtml(activity.location)} · ${escHtml(activity.dates)}</span>`, isHtml: true });
+  }
+
+  return lines;
+}
+
 function contactCmd(t: Translations): CommandResult {
   return [
     { type: 'output', content: `<span class="section-title">${t.contactTitle}</span>`, isHtml: true },
@@ -182,7 +228,7 @@ function contactCmd(t: Translations): CommandResult {
 function lsCmd(): CommandResult {
   return [{
     type: 'output',
-    content: `<span class="green">about</span>  <span class="green">skills</span>  <span class="green">projects</span>  <span class="green">contact</span>`,
+    content: `<span class="green">about</span>  <span class="green">skills</span>  <span class="green">projects</span>  <span class="green">experience</span>  <span class="green">activities</span>  <span class="green">contact</span>`,
     isHtml: true,
   }];
 }

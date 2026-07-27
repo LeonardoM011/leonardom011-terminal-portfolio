@@ -96,7 +96,7 @@
 .line {
   color: #ebdbb2;
   white-space: pre-wrap;
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .blank-line {
@@ -158,6 +158,13 @@
 
 .clickable-line:hover {
   background: rgba(184, 187, 38, 0.08);
+}
+
+/* ─── Wrapped bullet lines (hanging indent under the tree marker) ─── */
+:host ::ng-deep .hang-bullet {
+  display: block;
+  padding-left: 5ch;
+  text-indent: -5ch;
 }
 
 /* ─── HTML content tokens ─── */
