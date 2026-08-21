@@ -1,0 +1,4 @@
+Contact: https://github.com/LeonardoM011/leonardom011-terminal-portfolio/issues
+Expires: 2027-08-21T00:00:00.000Z
+Canonical: https://leonardom011.com/.well-known/security.txt
+Preferred-Languages: en
